@@ -3,7 +3,8 @@ require 'rails_helper'
 describe '#change_periodicity', type: :model do
   context 'when the subscription is not yearly but can be yearly' do
     # Setup
-    monthly_subscription = Subscription.new(period: 1, valid_periods: [1, 12])
+    subscription_id = SecureRandom.uuid
+    monthly_subscription = Subscription.new(id: subscription_id, period: 1, valid_periods: [1, 12])
 
     # Execution
     monthly_subscription.change_periodicity(period: 12)
@@ -16,7 +17,8 @@ describe '#change_periodicity', type: :model do
 
   context 'when the subscription is not quarterly but can be quarterly' do
     # Setup
-    monthly_subscription = Subscription.new(period: 1, valid_periods: [1, 3])
+    subscription_id = SecureRandom.uuid
+    monthly_subscription = Subscription.new(id: subscription_id, period: 1, valid_periods: [1, 3])
 
     # Execution
     monthly_subscription.change_periodicity(period: 3)
@@ -29,7 +31,8 @@ describe '#change_periodicity', type: :model do
 
   context 'when the subscription is already monthly' do
     # Setup
-    monthly_subscription = Subscription.new(period: 1, valid_periods: [1])
+    subscription_id = SecureRandom.uuid
+    monthly_subscription = Subscription.new(id: subscription_id, period: 1, valid_periods: [1])
 
     # Execution
     monthly_subscription.change_periodicity(period: 1)
@@ -42,7 +45,8 @@ describe '#change_periodicity', type: :model do
 
   context 'when the subscription can not be biannual' do
     # Setup
-    monthly_subscription = Subscription.new(period: 1, valid_periods: [1, 12])
+    subscription_id = SecureRandom.uuid
+    monthly_subscription = Subscription.new(id: subscription_id, period: 1, valid_periods: [1, 12])
 
     # Execution && Expectations
     it 'raise an exeception with the valid periods within a message' do

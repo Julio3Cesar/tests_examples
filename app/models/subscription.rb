@@ -1,9 +1,10 @@
 class Subscription
-  attr_reader :period, :valid_periods
+  attr_reader :id, :period, :valid_periods
 
-  def initialize(period:, valid_periods:)
+  def initialize(id:, period:, valid_periods:)
     @valid_periods = valid_periods
     @period = period
+    @id = id
   end
 
   def change_periodicity(period:)
